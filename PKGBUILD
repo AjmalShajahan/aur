@@ -1,8 +1,8 @@
 # Maintainer: nopw <aur@n0.pw>
 
 pkgname=stremio-linux-shell-git
-pkgver=v1.0.0.beta.11.r5.gca88264
-pkgrel=2
+pkgver=v1.0.0.beta.11.r11.g28fc1cf
+pkgrel=1
 pkgdesc="A native Linux client for Stremio"
 arch=('x86_64')
 url="https://github.com/Stremio/stremio-linux-shell"
