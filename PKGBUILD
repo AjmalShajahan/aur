@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=52.1.r14.g0c67d384
+pkgver=52.1.r16.g60373377
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -13,57 +13,63 @@ arch=(any)
 url="https://usebottles.com/"
 license=(GPL-3.0-only)
 depends=(
-  cabextract
-  dconf
-  gamemode
-  gtk4
-  gtksourceview5
-  hicolor-icon-theme
-  icoextract
-  imagemagick
-  libadwaita
-  libportal-gtk4
-  p7zip
-  patool
-  python
-  python-chardet
-  python-fvs
-  python-gobject
-  python-markdown
-  python-orjson
-  python-pathvalidate
-  python-pycurl
-  python-requests
-  python-steamgriddb
-  python-yaml
-  webkit2gtk
-  xorg-xdpyinfo
-  vkbasalt-cli
+	cabextract
+	dconf
+	gamemode
+	gtk4
+	gtksourceview5
+	hicolor-icon-theme
+	icoextract
+	imagemagick
+	libadwaita
+	libportal-gtk4
+	p7zip
+	patool
+	python
+	python-chardet
+	python-fvs
+	python-gobject
+	python-markdown
+	python-orjson
+	python-pathvalidate
+	python-pycurl
+	python-requests
+	python-steamgriddb
+	python-yaml
+	webkit2gtk
+	xorg-xdpyinfo
+	vkbasalt-cli
 )
 optdepends=(
-  gvfs
-  lib32-gamemode
-  lib32-gnutls
-  lib32-vkd3d
-  lib32-vulkan-icd-loader
-  vkd3d
-  vulkan-icd-loader
-  wine
+	gvfs
+	lib32-gamemode
+	lib32-gnutls
+	lib32-vkd3d
+	lib32-vulkan-icd-loader
+	vkd3d
+	vulkan-icd-loader
+	wine
 )
 makedepends=(
-  blueprint-compiler
-  meson
-  ninja
+	blueprint-compiler
+	meson
+	ninja
 	git
 )
 provides=(bottles)
 conflicts=(bottles)
-source=("git+https://github.com/bottlesdevs/Bottles.git")
-sha256sums=('SKIP')
+source=(
+	"git+https://github.com/bottlesdevs/Bottles.git"
+	"disable-flatpak-check.patch"
+)
+sha256sums=(
+	"SKIP"
+	"bc3dc9532a0ba8e45c584246bd4cc2eabd03c3a61d458f298fb3c09b11cce160"
+)
 
 pkgver() {
-  cd "Bottles"
-  git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+	cd "Bottles"
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 # prepare() {
@@ -82,16 +88,15 @@ pkgver() {
 # }
 
 prepare() {
-  # Fix warning about flatpak and sandbox environment
-  patch --forward --directory="${srcdir}/${_pkgname}" --strip=1 --input="${srcdir}/disable-flatpak-check.patch"
+	# Fix warning about flatpak and sandbox environment
+	patch --forward --directory="${srcdir}/${_pkgname}" --strip=1 --input="${srcdir}/disable-flatpak-check.patch"
 }
 
 build() {
-  cd "${srcdir}/${_pkgname}"
-  meson setup --prefix='/usr' build
-  ninja -C build
+	cd "${srcdir}/${_pkgname}"
+	meson setup --prefix='/usr' build
+	ninja -C build
 }
-
 
 #check() {
 #disable for now since we know it's failing for appstream issues
@@ -99,7 +104,7 @@ build() {
 #}
 
 package() {
-  cd "Bottles"
-  DESTDIR="$pkgdir/" ninja install -C build
+	cd "Bottles"
+	DESTDIR="$pkgdir/" ninja install -C build
 }
 # vim:set ts=2 sw=2 et:
