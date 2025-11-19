@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=52.1.r18.gd8449245
+pkgver=52.1.r25.gbb1d0327
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
