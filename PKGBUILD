@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=52.1.r25.gbb1d0327
+pkgver=52.1.r29.g808f3015
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -64,7 +64,7 @@ source=(
 )
 sha256sums=(
 	"SKIP"
-	"12775b8a05b538f3b210a6020b4555c7477f936660177780c811ac2f33628384"
+	"0de5b19be8484455936662e58578da66eee0fb040afcccbb28d0010be1a03ccb"
 )
 
 pkgver() {

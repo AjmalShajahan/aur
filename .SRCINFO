@@ -1,6 +1,6 @@
 pkgbase = bottles-git
 	pkgdesc = Easily manage wine and proton prefixes
-	pkgver = 52.1.r25.gbb1d0327
+	pkgver = 52.1.r29.g808f3015
 	pkgrel = 1
 	epoch = 2
 	url = https://usebottles.com/
@@ -49,6 +49,6 @@ pkgbase = bottles-git
 	source = git+https://github.com/bottlesdevs/Bottles.git
 	source = disable-flatpak-check.patch
 	sha256sums = SKIP
-	sha256sums = 12775b8a05b538f3b210a6020b4555c7477f936660177780c811ac2f33628384
+	sha256sums = 0de5b19be8484455936662e58578da66eee0fb040afcccbb28d0010be1a03ccb
 
 pkgname = bottles-git

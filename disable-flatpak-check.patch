@@ -15,19 +15,19 @@ index 6ff7c011..830c3b11 100644
  bottles_sources = [
    '__init__.py',
 diff --git a/bottles/frontend/views/bottle_details.py b/bottles/frontend/views/bottle_details.py
-index 5d712e35..9adc540b 100644
+index 71805e96..ef2f23c2 100644
 --- a/bottles/frontend/views/bottle_details.py
 +++ b/bottles/frontend/views/bottle_details.py
-@@ -21,7 +21,7 @@ from datetime import datetime
+@@ -22,7 +22,7 @@ from datetime import datetime
  from gettext import gettext as _
- from typing import List, Optional
+ from typing import Dict, List, Optional, Tuple
  
 -from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp
 +from gi.repository import Adw, Gdk, Gio, GLib, Gtk
  
  from bottles.backend.managers.backup import BackupManager
  from bottles.backend.models.config import BottleConfig
-@@ -489,20 +489,19 @@ class BottleView(Adw.PreferencesPage):
+@@ -820,20 +820,19 @@ class BottleView(Adw.PreferencesPage):
              dialog.connect("response", execute)
              dialog.show()
  
@@ -62,19 +62,10 @@ index 5d712e35..9adc540b 100644
      def __backup(self, widget, backup_type):
          """
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index 2d3960bb..72c4c279 100644
+index c87cf793..94b0bb63 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
-@@ -20,7 +20,7 @@ import os
- import re
- from gettext import gettext as _
- 
--from gi.repository import Adw, Gtk, Xdp
-+from gi.repository import Adw, Gtk
- 
- from bottles.backend.globals import (
-     base_version,
-@@ -142,7 +142,7 @@ class PreferencesView(Adw.PreferencesPage):
+@@ -148,7 +148,7 @@ class PreferencesView(Adw.PreferencesPage):
          self.queue = details.queue
          self.details = details
  
