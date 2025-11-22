@@ -49,6 +49,6 @@ pkgbase = bottles-git
 	source = git+https://github.com/bottlesdevs/Bottles.git
 	source = disable-flatpak-check.patch
 	sha256sums = SKIP
-	sha256sums = d9ccbb9ed9e83a32f5f5ab0e3d0d697691ad2ff313c6b69bff95dfd58929bb17
+	sha256sums = af104230f1d356037539b867624a267b70774d51e09f97e028e6cb11bfbfcf6e
 
 pkgname = bottles-git
