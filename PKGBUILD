@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=60.0.r0.g0f4683b9
+pkgver=60.1.r0.g30699169
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -15,7 +15,6 @@ license=(GPL-3.0-only)
 depends=(
 	cabextract
 	dconf
-	gamemode
 	gtk4
 	gtksourceview5
 	hicolor-icon-theme
@@ -49,6 +48,7 @@ optdepends=(
 	vkd3d
 	vulkan-icd-loader
 	wine
+	gamemode
 )
 makedepends=(
 	blueprint-compiler
@@ -64,7 +64,7 @@ source=(
 )
 sha256sums=(
 	"SKIP"
-	"af104230f1d356037539b867624a267b70774d51e09f97e028e6cb11bfbfcf6e"
+	"48cda3b83ff9f9c8e57996cfb1202fdf492d071c41bc2d223b6bcf8571adb590"
 )
 
 pkgver() {

@@ -62,7 +62,7 @@ index 71805e96..ef2f23c2 100644
      def __backup(self, widget, backup_type):
          """
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index c87cf793..7636a8d8 100644
+index c87cf793..8e48cab9 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
 @@ -20,7 +20,7 @@ import os
@@ -74,15 +74,16 @@ index c87cf793..7636a8d8 100644
  
  from bottles.backend.globals import (
      gamemode_available,
-@@ -148,7 +148,7 @@ class PreferencesView(Adw.PreferencesPage):
+@@ -148,9 +148,6 @@ class PreferencesView(Adw.PreferencesPage):
          self.queue = details.queue
          self.details = details
  
 -        if not gamemode_available or not Xdp.Portal.running_under_sandbox():
-+        if not gamemode_available:
-             return
- 
+-            return
+-
          _not_available = _("This feature is unavailable on your system.")
+         _flatpak_not_available = _("{} To add this feature, please run").format(
+             _not_available
 diff --git a/bottles/frontend/views/list.py b/bottles/frontend/views/list.py
 index 6bd8fc81..f3fc0059 100644
 --- a/bottles/frontend/views/list.py
