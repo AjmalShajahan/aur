@@ -1,7 +1,7 @@
 # Maintainer: nopw <aur@n0.pw>
 
 pkgname=stremio-linux-shell-git
-pkgver=v1.0.0.beta.11.r13.g2b393b3
+pkgver=v1.0.0.beta.12.r21.ga0d8793
 pkgrel=1
 pkgdesc="A native Linux client for Stremio"
 arch=('x86_64')
@@ -11,7 +11,6 @@ license=('GPL-3.0-only')
 depends=(
   'gtk4'
   'libadwaita'
-  'webkitgtk-6.0'   
   'mpv'
   'libepoxy'
   'openssl'
@@ -28,7 +27,6 @@ makedepends=(
   'nodejs'
   'gtk4'
   'libadwaita'
-  'webkitgtk-6.0'
   'mpv'
   'libepoxy'
   'gettext'
@@ -37,7 +35,7 @@ makedepends=(
 provides=('stremio-linux-shell' 'stremio')
 conflicts=('stremio' 'stremio-linux-shell')
 options=(!lto)
-source=("git+https://github.com/Stremio/stremio-linux-shell.git")
+source=("git+https://github.com/Stremio/stremio-linux-shell.git#branch=refactor/gtk4")
 sha256sums=('SKIP')
 
 pkgver() {
@@ -59,7 +57,18 @@ build() {
 package() {
   cd "stremio-linux-shell"
 
-  install -Dm755 "target/release/stremio-linux-shell" "$pkgdir/usr/bin/stremio"
+  # TODO: Check if this is the Arch way to do it
+  # Install the actual binary to libexec
+  install -Dm755 "target/release/stremio-linux-shell" "$pkgdir/usr/libexec/stremio-linux-shell"
+
+  # Create a wrapper script to set CEF_PATH and LD_LIBRARY_PATH
+  install -Dm755 /dev/stdin "$pkgdir/usr/bin/stremio" <<'EOF'
+#!/bin/sh
+export SERVER_PATH="$HOME/.local/share/stremio/server.js"
+export CEF_PATH="$HOME/.local/share/cef"
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CEF_PATH"
+exec /usr/libexec/stremio-linux-shell "$@"
+EOF
 
   install -Dm644 "data/com.stremio.Stremio.desktop" \
     "$pkgdir/usr/share/applications/com.stremio.Stremio.desktop"
@@ -72,4 +81,7 @@ package() {
 
   install -Dm644 /usr/share/licenses/spdx/GPL-3.0-only.txt \
     "$pkgdir/usr/share/licenses/$pkgname/LICENSE.txt"
+
+	install -Dm644 data/server.js -t \
+		"$HOME/.local/share/stremio/"
 }

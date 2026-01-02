@@ -1,6 +1,6 @@
 pkgbase = stremio-linux-shell-git
 	pkgdesc = A native Linux client for Stremio
-	pkgver = v1.0.0.beta.11.r11.g28fc1cf
+	pkgver = v1.0.0.beta.12.r21.ga0d8793
 	pkgrel = 1
 	url = https://github.com/Stremio/stremio-linux-shell
 	arch = x86_64
@@ -14,13 +14,11 @@ pkgbase = stremio-linux-shell-git
 	makedepends = nodejs
 	makedepends = gtk4
 	makedepends = libadwaita
-	makedepends = webkitgtk-6.0
 	makedepends = mpv
 	makedepends = libepoxy
 	makedepends = gettext
 	depends = gtk4
 	depends = libadwaita
-	depends = webkitgtk-6.0
 	depends = mpv
 	depends = libepoxy
 	depends = openssl
@@ -31,7 +29,7 @@ pkgbase = stremio-linux-shell-git
 	conflicts = stremio
 	conflicts = stremio-linux-shell
 	options = !lto
-	source = git+https://github.com/Stremio/stremio-linux-shell.git
+	source = git+https://github.com/Stremio/stremio-linux-shell.git#branch=refactor/gtk4
 	sha256sums = SKIP
 
 pkgname = stremio-linux-shell-git
