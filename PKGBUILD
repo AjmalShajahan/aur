@@ -67,6 +67,7 @@ package() {
 export SERVER_PATH="$HOME/.local/share/stremio/server.js"
 export CEF_PATH="$HOME/.local/share/cef"
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$CEF_PATH"
+export GDK_BACKEND="x11"
 exec /usr/libexec/stremio-linux-shell "$@"
 EOF
 
