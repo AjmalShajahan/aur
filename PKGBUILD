@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=60.1.r1.gca6c426e
+pkgver=60.1.r34.g143e9806
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -35,7 +35,6 @@ depends=(
 	python-requests
 	python-steamgriddb
 	python-yaml
-	webkit2gtk
 	xorg-xdpyinfo
 	vkbasalt-cli
 )
@@ -49,6 +48,7 @@ optdepends=(
 	vulkan-icd-loader
 	wine
 	gamemode
+	vmtouch
 )
 makedepends=(
 	blueprint-compiler
