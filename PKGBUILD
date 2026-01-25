@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=60.1.r34.g143e9806
+pkgver=61.1.r0.ga4ae597a
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -35,6 +35,7 @@ depends=(
 	python-requests
 	python-steamgriddb
 	python-yaml
+	python-yara
 	xorg-xdpyinfo
 	vkbasalt-cli
 )
@@ -64,7 +65,7 @@ source=(
 )
 sha256sums=(
 	"SKIP"
-	"48cda3b83ff9f9c8e57996cfb1202fdf492d071c41bc2d223b6bcf8571adb590"
+	"f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757"
 )
 
 pkgver() {

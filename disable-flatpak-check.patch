@@ -15,7 +15,7 @@ index 6ff7c011..830c3b11 100644
  bottles_sources = [
    '__init__.py',
 diff --git a/bottles/frontend/views/bottle_details.py b/bottles/frontend/views/bottle_details.py
-index 71805e96..ef2f23c2 100644
+index f897953c..91996d6e 100644
 --- a/bottles/frontend/views/bottle_details.py
 +++ b/bottles/frontend/views/bottle_details.py
 @@ -22,7 +22,7 @@ from datetime import datetime
@@ -27,7 +27,7 @@ index 71805e96..ef2f23c2 100644
  
  from bottles.backend.managers.backup import BackupManager
  from bottles.backend.models.config import BottleConfig
-@@ -820,20 +820,19 @@ class BottleView(Adw.PreferencesPage):
+@@ -824,20 +824,17 @@ class BottleView(Adw.PreferencesPage):
              dialog.connect("response", execute)
              dialog.show()
  
@@ -41,7 +41,7 @@ index 71805e96..ef2f23c2 100644
 -                    ),
 -                )
 -                dialog.add_response("dismiss", _("_Dismiss"))
--                dialog.connect("response", show_chooser)
+-                dialog.connect("response", lambda *args: show_chooser())
 -                dialog.present()
 -            else:
 -                show_chooser()
@@ -54,15 +54,13 @@ index 71805e96..ef2f23c2 100644
 +                ),
 +            )
 +            dialog.add_response("dismiss", _("_Dismiss"))
-+            dialog.connect("response", show_chooser)
++            dialog.connect("response", lambda *args: show_chooser())
 +            dialog.present()
-+        else:
-+            show_chooser()
+         else:
+             show_chooser()
  
-     def __backup(self, widget, backup_type):
-         """
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index c87cf793..8e48cab9 100644
+index 1e0090f8..e81c3513 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
 @@ -20,7 +20,7 @@ import os
@@ -130,7 +128,7 @@ index 9c386862..05a20cd8 100644
  
          self.app = self.window.get_application()
 diff --git a/bottles/frontend/windows/window.py b/bottles/frontend/windows/window.py
-index 50a4d48a..dcb4abb1 100644
+index b4e4fa04..4ed248c5 100644
 --- a/bottles/frontend/windows/window.py
 +++ b/bottles/frontend/windows/window.py
 @@ -22,7 +22,7 @@ from datetime import datetime, timedelta
@@ -142,7 +140,7 @@ index 50a4d48a..dcb4abb1 100644
  
  from bottles.backend.globals import Paths
  from bottles.backend.health import HealthChecker
-@@ -114,35 +114,6 @@ class BottlesWindow(Adw.ApplicationWindow):
+@@ -115,35 +115,6 @@ class BottlesWindow(Adw.ApplicationWindow):
              manager = Adw.StyleManager.get_default()
              manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
  
