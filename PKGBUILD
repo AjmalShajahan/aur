@@ -1,7 +1,7 @@
 # Maintainer: Chocobo1 <chocobo1 AT archlinux DOT net>
 
 pkgname=vmtouch-git
-pkgver=1.3.1.r17.g8f6898e
+pkgver=1.3.1.r19.gaf86e27
 pkgrel=1
 pkgdesc="Portable file system cache diagnostics and control"
 arch=('i686' 'x86_64')
