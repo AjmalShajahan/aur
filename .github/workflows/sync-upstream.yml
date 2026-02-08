@@ -1,0 +1,52 @@
+name: Sync branches from upstream
+
+on:
+  schedule:
+    - cron: "0 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Fast-forward branches from upstream
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          git remote set-url origin "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+
+          while IFS= read -r ref; do
+            branch=${ref#origin/}
+            if [[ "$branch" == "HEAD" ]]; then
+              continue
+            fi
+
+            if ! git show-ref --verify --quiet "refs/remotes/upstream/$branch"; then
+              echo "Skipping missing upstream branch: $branch"
+              continue
+            fi
+
+            if git merge-base --is-ancestor "origin/$branch" "upstream/$branch"; then
+              git checkout -B "$branch" "upstream/$branch"
+              git push origin "$branch"
+            else
+              echo "Skipping diverged branch: $branch"
+            fi
+          done < <(git for-each-ref --format='%(refname:short)' refs/remotes/origin)
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
