@@ -5,8 +5,8 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=61.1.r0.ga4ae597a
-pkgrel=1
+pkgver=63.0.r2.g015eb314
+pkgrel=2
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
 arch=(any)
@@ -26,7 +26,6 @@ depends=(
 	patool
 	python
 	python-chardet
-	python-fvs
 	python-gobject
 	python-markdown
 	python-orjson
@@ -56,16 +55,21 @@ makedepends=(
 	meson
 	ninja
 	git
+	go
 )
 provides=(bottles)
 conflicts=(bottles)
 source=(
 	"git+https://github.com/bottlesdevs/Bottles.git"
+	"git+https://github.com/fvs-lab/fvs2.git#tag=v0.1.3"
+	"git+https://github.com/fvs-lab/core.git#tag=v0.0.1"
 	"disable-flatpak-check.patch"
 )
 sha256sums=(
-	"SKIP"
-	"f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757"
+	'SKIP'
+	'SKIP'
+	'SKIP'
+	'f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757'
 )
 
 pkgver() {
@@ -94,6 +98,9 @@ prepare() {
 }
 
 build() {
+	cd "${srcdir}/fvs2"
+	go build -buildmode=pie -trimpath -ldflags "-linkmode external -extldflags \"$LDFLAGS\"" -o fvs2 ./cmd/fvs2
+
 	cd "${srcdir}/${_pkgname}"
 	meson setup --prefix='/usr' build
 	ninja -C build
@@ -105,6 +112,8 @@ build() {
 #}
 
 package() {
+	install -Dm755 "${srcdir}/fvs2/fvs2" "${pkgdir}/usr/bin/fvs2"
+
 	cd "Bottles"
 	DESTDIR="$pkgdir/" ninja install -C build
 }
