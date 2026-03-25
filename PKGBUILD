@@ -1,11 +1,11 @@
 # Maintainer: nopw <aur@n0.pw>
 
 pkgname=stremio-linux-shell-git
-pkgver=v1.0.0.beta.12.r21.ga0d8793
+pkgver=v1.0.0.beta.13.r39.g7431320
 pkgrel=1
-pkgdesc="A native Linux client for Stremio"
+pkgdesc="A native Linux client for Stremio (Personal Fork)"
 arch=('x86_64')
-url="https://github.com/Stremio/stremio-linux-shell"
+url="https://github.com/AjmalShajahan/stremio-linux-shell"
 license=('GPL-3.0-only')
 
 depends=(
@@ -35,7 +35,7 @@ makedepends=(
 provides=('stremio-linux-shell' 'stremio')
 conflicts=('stremio' 'stremio-linux-shell')
 options=(!lto)
-source=("git+https://github.com/Stremio/stremio-linux-shell.git#branch=refactor/gtk4")
+source=("git+https://github.com/AjmalShajahan/stremio-linux-shell.git#branch=refactor/gtk4")
 sha256sums=('SKIP')
 
 pkgver() {
