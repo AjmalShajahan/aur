@@ -25,11 +25,6 @@ makedepends=(
   'binutils'
   'licenses'
   'nodejs'
-  'gtk4'
-  'libadwaita'
-  'mpv'
-  'libepoxy'
-  'gettext'
 )
 
 provides=('stremio-linux-shell' 'stremio')
