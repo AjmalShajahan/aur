@@ -10,7 +10,6 @@ pkgbase = bottles-git
 	makedepends = meson
 	makedepends = ninja
 	makedepends = git
-	makedepends = go
 	depends = cabextract
 	depends = dconf
 	depends = gtk4
@@ -35,6 +34,7 @@ pkgbase = bottles-git
 	depends = python-yara
 	depends = xorg-xdpyinfo
 	depends = vkbasalt-cli
+	depends = fvs2
 	optdepends = gvfs
 	optdepends = lib32-gamemode
 	optdepends = lib32-gnutls
@@ -48,11 +48,7 @@ pkgbase = bottles-git
 	provides = bottles
 	conflicts = bottles
 	source = git+https://github.com/bottlesdevs/Bottles.git
-	source = git+https://github.com/fvs-lab/fvs2.git#tag=v0.1.3
-	source = git+https://github.com/fvs-lab/core.git#tag=v0.0.1
 	source = disable-flatpak-check.patch
-	sha256sums = SKIP
-	sha256sums = SKIP
 	sha256sums = SKIP
 	sha256sums = f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757
 

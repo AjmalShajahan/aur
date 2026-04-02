@@ -37,6 +37,7 @@ depends=(
 	python-yara
 	xorg-xdpyinfo
 	vkbasalt-cli
+  fvs2
 )
 optdepends=(
 	gvfs
@@ -55,19 +56,14 @@ makedepends=(
 	meson
 	ninja
 	git
-	go
 )
 provides=(bottles)
 conflicts=(bottles)
 source=(
 	"git+https://github.com/bottlesdevs/Bottles.git"
-	"git+https://github.com/fvs-lab/fvs2.git#tag=v0.1.3"
-	"git+https://github.com/fvs-lab/core.git#tag=v0.0.1"
 	"disable-flatpak-check.patch"
 )
 sha256sums=(
-	'SKIP'
-	'SKIP'
 	'SKIP'
 	'f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757'
 )
@@ -98,9 +94,6 @@ prepare() {
 }
 
 build() {
-	cd "${srcdir}/fvs2"
-	go build -buildmode=pie -trimpath -ldflags "-linkmode external -extldflags \"$LDFLAGS\"" -o fvs2 ./cmd/fvs2
-
 	cd "${srcdir}/${_pkgname}"
 	meson setup --prefix='/usr' build
 	ninja -C build
@@ -112,8 +105,6 @@ build() {
 #}
 
 package() {
-	install -Dm755 "${srcdir}/fvs2/fvs2" "${pkgdir}/usr/bin/fvs2"
-
 	cd "Bottles"
 	DESTDIR="$pkgdir/" ninja install -C build
 }
