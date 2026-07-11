@@ -3,4 +3,4 @@
 !.gitignore
 !.SRCINFO
 !PKGBUILD
-!rustdesk-bin.install
+!rustdesk-nightly-bin.install

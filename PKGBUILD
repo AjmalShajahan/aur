@@ -4,16 +4,16 @@
 # Contributor: taotieren <admin@taotieren.com>
 # Contributor: Leon Möller <jkhsjdhjs at totally dot rip>
 
-pkgbase=rustdesk-bin
-pkgname=(rustdesk-bin)
-pkgver=1.4.5
+pkgbase=rustdesk-nightly-bin
+pkgname=(rustdesk-nightly-bin)
+pkgver=1.4.9
 pkgrel=1
-pkgdesc="Yet another remote desktop software, written in Rust. Nightly build. Works out of the box, no configuration required."
+pkgdesc="Yet another remote desktop software, written in Rust. Nightly binary build. Works out of the box, no configuration required."
 url="https://github.com/rustdesk/rustdesk"
 license=('AGPL-3.0-only')
 arch=('x86_64' 'aarch64')
-provides=("${pkgname%-bin}")
-conflicts=("${pkgname%-bin}")
+provides=('rustdesk')
+conflicts=('rustdesk' 'rustdesk-bin')
 depends=(
     'gtk3'
     'xdotool'
@@ -31,10 +31,10 @@ optdepends=(
     'libayatana-appindicator: tray icon'
 )
 options=('!strip' '!lto' '!debug')
-source_x86_64=("${pkgbase%-bin}-${pkgver}-${pkgrel}-x86_64.pkg.tar.zst::${url}/releases/download/nightly/rustdesk-${pkgver}-0-x86_64.pkg.tar.zst")
-source_aarch64=("${pkgbase%-bin}-${pkgver}-${pkgrel}-aarch64.rpm::${url}/releases/download/nightly/rustdesk-${pkgver}-0.aarch64.rpm")
-sha256sums_x86_64=('SKIP')
-sha256sums_aarch64=('SKIP')
+source_x86_64=("rustdesk-${pkgver}-${pkgrel}-${CARCH}.pkg.tar.zst::${url}/releases/download/nightly/rustdesk-${pkgver}-0-${CARCH}.pkg.tar.zst")
+source_aarch64=("rustdesk-${pkgver}-${pkgrel}-aarch64.rpm::${url}/releases/download/nightly/rustdesk-${pkgver}-0.aarch64.rpm")
+sha256sums_x86_64=('8e85eb3c7cd2e3d016a5ca277583dda57b744ca17ab7cba49a01ef2d75d76312')
+sha256sums_aarch64=('419766a63b8a94aed54d0d0278dafef90bf2dc999ac2c9dbe2e87b7161716431')
 
 install=$pkgname.install
 
