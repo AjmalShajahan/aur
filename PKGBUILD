@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=63.1.r0.gbce7db3a
+pkgver=64.1.r25.ga3606d14
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -37,7 +37,7 @@ depends=(
 	python-yara
 	xorg-xdpyinfo
 	vkbasalt-cli
-  fvs2
+	fvs2
 )
 optdepends=(
 	gvfs
@@ -63,10 +63,8 @@ source=(
 	"git+https://github.com/bottlesdevs/Bottles.git"
 	"disable-flatpak-check.patch"
 )
-sha256sums=(
-	'SKIP'
-	'f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757'
-)
+sha256sums=('SKIP'
+            'f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757')
 
 pkgver() {
 	cd "Bottles"
