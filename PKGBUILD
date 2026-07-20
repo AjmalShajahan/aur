@@ -5,8 +5,8 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=64.1.r25.ga3606d14
-pkgrel=2
+pkgver=64.1.r26.g3c448d8d
+pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
 arch=(any)
@@ -59,7 +59,7 @@ makedepends=(
 provides=(bottles)
 conflicts=(bottles)
 source=(
-	"git+https://github.com/bottlesdevs/Bottles.git"
+	"Bottles::git+https://github.com/AjmalShajahan/bottles.git#branch=develop"
 	"disable-flatpak-check.patch"
 )
 sha256sums=('SKIP'
