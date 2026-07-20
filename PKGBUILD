@@ -6,7 +6,7 @@
 pkgname=bottles-git
 _pkgname=Bottles
 pkgver=64.1.r25.ga3606d14
-pkgrel=1
+pkgrel=2
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
 arch=(any)
@@ -32,7 +32,6 @@ depends=(
 	python-pathvalidate
 	python-pycurl
 	python-requests
-	python-steamgriddb
 	python-yaml
 	python-yara
 	xorg-xdpyinfo
