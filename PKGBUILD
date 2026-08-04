@@ -33,8 +33,8 @@ optdepends=(
 options=('!strip' '!lto' '!debug')
 source_x86_64=("rustdesk-${pkgver}-${pkgrel}-${CARCH}.pkg.tar.zst::${url}/releases/download/nightly/rustdesk-${pkgver}-0-${CARCH}.pkg.tar.zst")
 source_aarch64=("rustdesk-${pkgver}-${pkgrel}-aarch64.rpm::${url}/releases/download/nightly/rustdesk-${pkgver}-0.aarch64.rpm")
-sha256sums_x86_64=('8e85eb3c7cd2e3d016a5ca277583dda57b744ca17ab7cba49a01ef2d75d76312')
-sha256sums_aarch64=('419766a63b8a94aed54d0d0278dafef90bf2dc999ac2c9dbe2e87b7161716431')
+sha256sums_x86_64=('59cadb206b1a287ed2897b5c6d14296e4e8868f48f671ec3dcb9515ddd975b9c')
+sha256sums_aarch64=('82b07beab83ad6bf7c12cbfd581b0375a5156ccf01d696ab53e5624d54b53c12')
 
 install=$pkgname.install
 
