@@ -1,8 +1,8 @@
 diff --git a/bottles/frontend/meson.build b/bottles/frontend/meson.build
-index 6ff7c011..830c3b11 100644
+index 6ff7c011..c26ea0b9 100644
 --- a/bottles/frontend/meson.build
 +++ b/bottles/frontend/meson.build
-@@ -23,11 +23,6 @@ params_file = configure_file(
+@@ -23,12 +23,6 @@ params_file = configure_file(
      configuration: conf
  )
  
@@ -11,23 +11,24 @@ index 6ff7c011..830c3b11 100644
 -if not fs.is_file('/' + '.flatpak-info')
 -  error('file does not exist')
 -endif
- 
+-
  bottles_sources = [
    '__init__.py',
+   'main.py',
 diff --git a/bottles/frontend/views/bottle_details.py b/bottles/frontend/views/bottle_details.py
-index f897953c..91996d6e 100644
+index 1d3f18b8..d42bdd58 100644
 --- a/bottles/frontend/views/bottle_details.py
 +++ b/bottles/frontend/views/bottle_details.py
-@@ -22,7 +22,7 @@ from datetime import datetime
+@@ -21,7 +21,7 @@ from datetime import datetime
  from gettext import gettext as _
- from typing import Dict, List, Optional, Tuple
+ from typing import Dict, List, Optional
  
 -from gi.repository import Adw, Gdk, Gio, GLib, Gtk, Xdp
 +from gi.repository import Adw, Gdk, Gio, GLib, Gtk
  
  from bottles.backend.managers.backup import BackupManager
  from bottles.backend.models.config import BottleConfig
-@@ -824,20 +824,17 @@ class BottleView(Adw.PreferencesPage):
+@@ -713,20 +713,17 @@ class BottleView(Adw.PreferencesPage):
              dialog.connect("response", execute)
              dialog.show()
  
@@ -60,7 +61,7 @@ index f897953c..91996d6e 100644
              show_chooser()
  
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index 1e0090f8..e81c3513 100644
+index 52090fb5..43cc5ca0 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
 @@ -20,7 +20,7 @@ import os
@@ -72,9 +73,9 @@ index 1e0090f8..e81c3513 100644
  
  from bottles.backend.globals import (
      gamemode_available,
-@@ -148,9 +148,6 @@ class PreferencesView(Adw.PreferencesPage):
-         self.queue = details.queue
-         self.details = details
+@@ -173,9 +173,6 @@ class PreferencesView(Adw.PreferencesPage):
+                 )
+             )
  
 -        if not gamemode_available or not Xdp.Portal.running_under_sandbox():
 -            return
@@ -83,19 +84,19 @@ index 1e0090f8..e81c3513 100644
          _flatpak_not_available = _("{} To add this feature, please run").format(
              _not_available
 diff --git a/bottles/frontend/views/list.py b/bottles/frontend/views/list.py
-index 6bd8fc81..f3fc0059 100644
+index 0f9f01a8..c3982896 100644
 --- a/bottles/frontend/views/list.py
 +++ b/bottles/frontend/views/list.py
 @@ -18,7 +18,7 @@
  from datetime import datetime
- from gettext import gettext as _
+ from gettext import gettext as _, ngettext
  
 -from gi.repository import Adw, GLib, Gtk, Xdp
-+from gi.repository import Adw, Gtk
++from gi.repository import Adw, GLib, Gtk
  
  from bottles.backend.models.config import BottleConfig
  from bottles.backend.models.result import Result
-@@ -82,9 +82,6 @@ class BottlesBottleRow(Adw.ActionRow):
+@@ -126,9 +126,6 @@ class BottlesBottleRow(Adw.ActionRow):
  
      def run_executable(self, *_args):
          """Display file dialog for executable"""
@@ -106,7 +107,7 @@ index 6bd8fc81..f3fc0059 100644
              if response != Gtk.ResponseType.ACCEPT:
                  return
 diff --git a/bottles/frontend/views/new_bottle_dialog.py b/bottles/frontend/views/new_bottle_dialog.py
-index 9c386862..05a20cd8 100644
+index 86c78688..00bf3e3e 100644
 --- a/bottles/frontend/views/new_bottle_dialog.py
 +++ b/bottles/frontend/views/new_bottle_dialog.py
 @@ -20,7 +20,7 @@ from gettext import gettext as _
@@ -118,8 +119,8 @@ index 9c386862..05a20cd8 100644
  from pathvalidate import sanitize_filename
  
  from bottles.backend.models.config import BottleConfig
-@@ -86,7 +86,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
-         super().__init__(**kwargs)
+@@ -92,7 +92,7 @@ class BottlesNewBottleDialog(Adw.Dialog):
+         )
          # common variables and references
          self.window = GtkUtils.get_parent_window()
 -        if not self.window or not Xdp.Portal.running_under_sandbox():
@@ -128,19 +129,19 @@ index 9c386862..05a20cd8 100644
  
          self.app = self.window.get_application()
 diff --git a/bottles/frontend/windows/window.py b/bottles/frontend/windows/window.py
-index b4e4fa04..4ed248c5 100644
+index 14facf78..4eef5349 100644
 --- a/bottles/frontend/windows/window.py
 +++ b/bottles/frontend/windows/window.py
 @@ -22,7 +22,7 @@ from datetime import datetime, timedelta
  from gettext import gettext as _
  from typing import Optional
  
--from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp
-+from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk
+-from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, Xdp, XdpGtk4
++from gi.repository import Adw, Gdk, Gio, GLib, GObject, Gtk, XdpGtk4
  
  from bottles.backend.globals import Paths
  from bottles.backend.health import HealthChecker
-@@ -115,35 +115,6 @@ class BottlesWindow(Adw.ApplicationWindow):
+@@ -131,35 +131,6 @@ class BottlesWindow(Adw.ApplicationWindow):
              manager = Adw.StyleManager.get_default()
              manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
  

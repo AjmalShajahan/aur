@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _pkgname=Bottles
-pkgver=64.1.r29.g77e4370c
+pkgver=64.1.r144.g2761c65f
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -63,7 +63,7 @@ source=(
 	"disable-flatpak-check.patch"
 )
 sha256sums=('SKIP'
-            'f5fc3d6eb178ab58190e73e6f4cb5931de03424c14f05726079022f50f8bc757')
+            'f89fae176e5e34a0e4fe1ec6a28ced1745803ae7597222a5a894b568cd6d57b3')
 
 pkgver() {
 	cd "Bottles"
