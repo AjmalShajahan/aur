@@ -16,7 +16,7 @@ index 6ff7c011..c26ea0b9 100644
    '__init__.py',
    'main.py',
 diff --git a/bottles/frontend/views/bottle_details.py b/bottles/frontend/views/bottle_details.py
-index 1d3f18b8..d42bdd58 100644
+index 0c9310c5..eb32f209 100644
 --- a/bottles/frontend/views/bottle_details.py
 +++ b/bottles/frontend/views/bottle_details.py
 @@ -21,7 +21,7 @@ from datetime import datetime
@@ -61,7 +61,7 @@ index 1d3f18b8..d42bdd58 100644
              show_chooser()
  
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index 52090fb5..43cc5ca0 100644
+index 2bc2235e..43cc5ca0 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
 @@ -20,7 +20,7 @@ import os
@@ -77,7 +77,7 @@ index 52090fb5..43cc5ca0 100644
                  )
              )
  
--        if not gamemode_available or not Xdp.Portal.running_under_sandbox():
+-        if not Xdp.Portal.running_under_sandbox():
 -            return
 -
          _not_available = _("This feature is unavailable on your system.")
@@ -107,7 +107,7 @@ index 0f9f01a8..c3982896 100644
              if response != Gtk.ResponseType.ACCEPT:
                  return
 diff --git a/bottles/frontend/views/new_bottle_dialog.py b/bottles/frontend/views/new_bottle_dialog.py
-index 86c78688..00bf3e3e 100644
+index 3542efe0..767e78d9 100644
 --- a/bottles/frontend/views/new_bottle_dialog.py
 +++ b/bottles/frontend/views/new_bottle_dialog.py
 @@ -20,7 +20,7 @@ from gettext import gettext as _

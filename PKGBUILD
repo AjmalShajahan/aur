@@ -4,8 +4,8 @@
 # shellcheck shell=bash disable=SC2034,SC2154
 
 pkgname=bottles-git
-_pkgname=Bottles
-pkgver=64.1.r144.g2761c65f
+_srcname=Bottles
+pkgver=65.4.r0.g87650d29
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -59,14 +59,16 @@ makedepends=(
 provides=(bottles)
 conflicts=(bottles)
 source=(
-	"Bottles::git+https://github.com/AjmalShajahan/bottles.git#branch=develop"
+	"${_srcname}::git+https://github.com/bottlesdevs/Bottles.git#branch=main"
 	"disable-flatpak-check.patch"
+	"native-fixes.patch"
 )
 sha256sums=('SKIP'
-            'f89fae176e5e34a0e4fe1ec6a28ced1745803ae7597222a5a894b568cd6d57b3')
+            'f38ad47ba1d798b9192e1f6e9caf1da556804a5804316131b389edd6bb1dafcb'
+            '80f3ad7cd221e5e2c67e48726b0018c3ab7af6864ab8bca7602be2fb4475bc5e')
 
 pkgver() {
-	cd "Bottles"
+	cd "${srcdir}/${_srcname}"
 	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
@@ -87,11 +89,13 @@ pkgver() {
 
 prepare() {
 	# Fix warning about flatpak and sandbox environment
-	patch --forward --directory="${srcdir}/${_pkgname}" --strip=1 --input="${srcdir}/disable-flatpak-check.patch"
+	patch --forward --directory="${srcdir}/${_srcname}" --strip=1 --input="${srcdir}/disable-flatpak-check.patch"
+	# Apply native packaging fixes maintained outside upstream
+	patch --forward --directory="${srcdir}/${_srcname}" --strip=1 --input="${srcdir}/native-fixes.patch"
 }
 
 build() {
-	cd "${srcdir}/${_pkgname}"
+	cd "${srcdir}/${_srcname}"
 	meson setup --prefix='/usr' build
 	ninja -C build
 }
@@ -102,7 +106,7 @@ build() {
 #}
 
 package() {
-	cd "Bottles"
+	cd "${srcdir}/${_srcname}"
 	DESTDIR="$pkgdir/" ninja install -C build
 }
 # vim:set ts=2 sw=2 et:
