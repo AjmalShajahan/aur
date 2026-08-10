@@ -2,7 +2,7 @@ diff --git a/bottles/backend/managers/manager.py b/bottles/backend/managers/mana
 index 900c9a7a..b61aec06 100644
 --- a/bottles/backend/managers/manager.py
 +++ b/bottles/backend/managers/manager.py
-@@ -1198,6 +1198,7 @@ class Manager(metaclass=Singleton):
+@@ -1304,6 +1304,7 @@ class Manager(metaclass=Singleton):
                      "pulseaudio_latency": _program.get("pulseaudio_latency"),
                      "virtual_desktop": _program.get("virtual_desktop"),
                      "winebridge": _program.get("winebridge"),
