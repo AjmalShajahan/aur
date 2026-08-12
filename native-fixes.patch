@@ -1,8 +1,8 @@
 diff --git a/bottles/backend/managers/manager.py b/bottles/backend/managers/manager.py
-index 900c9a7a..b61aec06 100644
+index 023c4550..27fb6d90 100644
 --- a/bottles/backend/managers/manager.py
 +++ b/bottles/backend/managers/manager.py
-@@ -1304,6 +1304,7 @@ class Manager(metaclass=Singleton):
+@@ -1324,6 +1324,7 @@ class Manager(metaclass=Singleton):
                      "pulseaudio_latency": _program.get("pulseaudio_latency"),
                      "virtual_desktop": _program.get("virtual_desktop"),
                      "winebridge": _program.get("winebridge"),
@@ -39,10 +39,10 @@ index 1d4d080d..e4a9f028 100644
          """scopes: steamapps, userdata"""
          if scope not in ["steamapps", "userdata"]:
 diff --git a/bottles/backend/wine/executor.py b/bottles/backend/wine/executor.py
-index 1c321521..c67e07a3 100644
+index 8ba5f4b2..3ec64a55 100644
 --- a/bottles/backend/wine/executor.py
 +++ b/bottles/backend/wine/executor.py
-@@ -86,6 +86,7 @@ class WineExecutor:
+@@ -91,6 +91,7 @@ class WineExecutor:
          program_gamescope: Optional[bool] = None,
          program_virt_desktop: Optional[bool] = None,
          program_winebridge: Optional[bool] = None,
@@ -50,7 +50,7 @@ index 1c321521..c67e07a3 100644
          program_hide_console: bool = False,
          sandbox_override: Optional[str] = None,
      ):
-@@ -157,6 +158,14 @@ class WineExecutor:
+@@ -170,6 +171,14 @@ class WineExecutor:
          ):
              self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
  
@@ -65,7 +65,7 @@ index 1c321521..c67e07a3 100644
          if env_dll_overrides:
              if "WINEDLLOVERRIDES" in self.environment:
                  self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(
-@@ -253,6 +262,7 @@ class WineExecutor:
+@@ -266,6 +275,7 @@ class WineExecutor:
              program_gamescope=program.get("gamescope"),
              program_virt_desktop=program.get("virtual_desktop"),
              program_winebridge=program.get("winebridge"),
@@ -74,7 +74,7 @@ index 1c321521..c67e07a3 100644
              sandbox_override=sandbox_override,
          )
 diff --git a/bottles/backend/wine/winecommand.py b/bottles/backend/wine/winecommand.py
-index b792ecd7..f068e6b2 100644
+index 4a460eca..9794633a 100644
 --- a/bottles/backend/wine/winecommand.py
 +++ b/bottles/backend/wine/winecommand.py
 @@ -126,13 +126,29 @@ def _wayland_available(env: "WineEnv") -> bool:
