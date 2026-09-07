@@ -1,8 +1,8 @@
 diff --git a/bottles/backend/managers/manager.py b/bottles/backend/managers/manager.py
-index 023c4550..27fb6d90 100644
+index 4d320ed..4589805 100644
 --- a/bottles/backend/managers/manager.py
 +++ b/bottles/backend/managers/manager.py
-@@ -1324,6 +1324,7 @@ class Manager(metaclass=Singleton):
+@@ -1323,6 +1323,7 @@ class Manager(metaclass=Singleton):
                      "pulseaudio_latency": _program.get("pulseaudio_latency"),
                      "virtual_desktop": _program.get("virtual_desktop"),
                      "winebridge": _program.get("winebridge"),
@@ -11,7 +11,7 @@ index 023c4550..27fb6d90 100644
                      "autostart": _program.get("autostart", False),
                      "file_extensions": _program.get("file_extensions", []),
 diff --git a/bottles/backend/managers/steam.py b/bottles/backend/managers/steam.py
-index 1d4d080d..e4a9f028 100644
+index 75935bf..1f42ef1 100644
 --- a/bottles/backend/managers/steam.py
 +++ b/bottles/backend/managers/steam.py
 @@ -99,11 +99,22 @@ class SteamManager:
@@ -39,10 +39,10 @@ index 1d4d080d..e4a9f028 100644
          """scopes: steamapps, userdata"""
          if scope not in ["steamapps", "userdata"]:
 diff --git a/bottles/backend/wine/executor.py b/bottles/backend/wine/executor.py
-index 8ba5f4b2..3ec64a55 100644
+index fd3d238..18c28a0 100644
 --- a/bottles/backend/wine/executor.py
 +++ b/bottles/backend/wine/executor.py
-@@ -91,6 +91,7 @@ class WineExecutor:
+@@ -93,6 +93,7 @@ class WineExecutor:
          program_gamescope: Optional[bool] = None,
          program_virt_desktop: Optional[bool] = None,
          program_winebridge: Optional[bool] = None,
@@ -50,7 +50,7 @@ index 8ba5f4b2..3ec64a55 100644
          program_hide_console: bool = False,
          sandbox_override: Optional[str] = None,
      ):
-@@ -170,6 +171,14 @@ class WineExecutor:
+@@ -176,6 +177,14 @@ class WineExecutor:
          ):
              self.environment["GAMESCOPE"] = "1" if program_gamescope else "0"
  
@@ -65,7 +65,7 @@ index 8ba5f4b2..3ec64a55 100644
          if env_dll_overrides:
              if "WINEDLLOVERRIDES" in self.environment:
                  self.environment["WINEDLLOVERRIDES"] += ";" + ";".join(
-@@ -266,6 +275,7 @@ class WineExecutor:
+@@ -272,6 +281,7 @@ class WineExecutor:
              program_gamescope=program.get("gamescope"),
              program_virt_desktop=program.get("virtual_desktop"),
              program_winebridge=program.get("winebridge"),
@@ -74,10 +74,10 @@ index 8ba5f4b2..3ec64a55 100644
              sandbox_override=sandbox_override,
          )
 diff --git a/bottles/backend/wine/winecommand.py b/bottles/backend/wine/winecommand.py
-index 4a460eca..9794633a 100644
+index 38f32f2..9faaf35 100644
 --- a/bottles/backend/wine/winecommand.py
 +++ b/bottles/backend/wine/winecommand.py
-@@ -126,13 +126,29 @@ def _wayland_available(env: "WineEnv") -> bool:
+@@ -131,13 +131,29 @@ def _wayland_available(env: "WineEnv") -> bool:
  
  
  def apply_wayland_preferences(
@@ -109,7 +109,7 @@ index 4a460eca..9794633a 100644
      wayland_display = os.environ.get("WAYLAND_DISPLAY")
      if not env.has("WAYLAND_DISPLAY") and wayland_display:
          env.add("WAYLAND_DISPLAY", wayland_display, override=True)
-@@ -401,6 +417,8 @@ class WineCommand:
+@@ -473,6 +489,8 @@ class WineCommand:
          if environment is None:
              environment = {}
  
@@ -118,7 +118,7 @@ index 4a460eca..9794633a 100644
          bottle = ManagerUtils.get_bottle_path(config)
          runner_path = ManagerUtils.get_runner_path(config.Runner)
          proton_path = ""
-@@ -689,7 +707,14 @@ class WineCommand:
+@@ -768,7 +786,14 @@ class WineCommand:
              candidate = os.path.join(runner_path, "share/X11/locale")
              if os.path.isdir(candidate):
                  xlocale_dir = candidate
@@ -135,7 +135,7 @@ index 4a460eca..9794633a 100644
              env,
              params,
 diff --git a/bottles/frontend/ui/dialog-launch-options.blp b/bottles/frontend/ui/dialog-launch-options.blp
-index 9c48a0cd..322a216b 100644
+index 9c48a0c..322a216 100644
 --- a/bottles/frontend/ui/dialog-launch-options.blp
 +++ b/bottles/frontend/ui/dialog-launch-options.blp
 @@ -276,6 +276,15 @@ template $LaunchOptionsDialog: Adw.Window {
@@ -155,7 +155,7 @@ index 9c48a0cd..322a216b 100644
      }
    }
 diff --git a/bottles/frontend/windows/launchoptions.py b/bottles/frontend/windows/launchoptions.py
-index a21583a9..30a6824c 100644
+index a18c701..30a6824 100644
 --- a/bottles/frontend/windows/launchoptions.py
 +++ b/bottles/frontend/windows/launchoptions.py
 @@ -58,6 +58,7 @@ class LaunchOptionsDialog(Adw.Window):
@@ -174,15 +174,6 @@ index a21583a9..30a6824c 100644
      action_automatic_backup = Gtk.Template.Child()
      btn_automatic_backup = Gtk.Template.Child()
      # endregion
-@@ -120,7 +122,7 @@ class LaunchOptionsDialog(Adw.Window):
- 
-         arguments_enabled = program.get("arguments_enabled", True)
-         self.switch_arguments.set_active(arguments_enabled)
--        self.entry_arguments.set_sensitive(arguments_enabled)
-+        self.entry_arguments.set_editable(arguments_enabled)
-         self.switch_hide_console.set_active(program.get("hide_console") is True)
-         self.switch_autostart.set_active(program.get("autostart", False))
- 
 @@ -133,6 +135,7 @@ class LaunchOptionsDialog(Adw.Window):
          self.toggled["gamescope"] = False
          self.toggled["virtual_desktop"] = False
@@ -245,15 +236,6 @@ index a21583a9..30a6824c 100644
          self.program["arguments"] = self.entry_arguments.get_text()
          self.program["arguments_enabled"] = self.switch_arguments.get_active()
          if self.switch_hide_console.get_active():
-@@ -328,7 +343,7 @@ class LaunchOptionsDialog(Adw.Window):
-         set_autostart_enabled(self.window, after, sync_finished)
- 
-     def __toggle_arguments(self, *_args):
--        self.entry_arguments.set_sensitive(self.switch_arguments.get_active())
-+        self.entry_arguments.set_editable(self.switch_arguments.get_active())
- 
-     def __choose_pre_script(self, *_args):
-         def set_path(dialog, result):
 @@ -486,6 +501,7 @@ class LaunchOptionsDialog(Adw.Window):
          self.switch_gamescope.set_active(self.global_gamescope)
          self.switch_virt_desktop.set_active(self.global_virt_desktop)

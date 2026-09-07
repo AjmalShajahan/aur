@@ -1,5 +1,5 @@
 diff --git a/bottles/frontend/meson.build b/bottles/frontend/meson.build
-index 6ff7c011..c26ea0b9 100644
+index 6ff7c01..c26ea0b 100644
 --- a/bottles/frontend/meson.build
 +++ b/bottles/frontend/meson.build
 @@ -23,12 +23,6 @@ params_file = configure_file(
@@ -16,7 +16,7 @@ index 6ff7c011..c26ea0b9 100644
    '__init__.py',
    'main.py',
 diff --git a/bottles/frontend/views/bottle_details.py b/bottles/frontend/views/bottle_details.py
-index dfeec4e7..300978fb 100644
+index 69b33ef..9c748ac 100644
 --- a/bottles/frontend/views/bottle_details.py
 +++ b/bottles/frontend/views/bottle_details.py
 @@ -21,7 +21,7 @@ from datetime import datetime
@@ -28,7 +28,7 @@ index dfeec4e7..300978fb 100644
  
  from bottles.backend.managers.backup import BackupManager
  from bottles.backend.models.config import BottleConfig
-@@ -727,20 +727,17 @@ class BottleView(Adw.PreferencesPage):
+@@ -726,20 +726,17 @@ class BottleView(Adw.PreferencesPage):
              dialog.connect("response", execute)
              dialog.show()
  
@@ -61,7 +61,7 @@ index dfeec4e7..300978fb 100644
              show_chooser()
  
 diff --git a/bottles/frontend/views/bottle_preferences.py b/bottles/frontend/views/bottle_preferences.py
-index 0254eb92..0d73074d 100644
+index 4b5c3f4..90c08db 100644
 --- a/bottles/frontend/views/bottle_preferences.py
 +++ b/bottles/frontend/views/bottle_preferences.py
 @@ -20,7 +20,7 @@ import os
@@ -84,7 +84,7 @@ index 0254eb92..0d73074d 100644
          _flatpak_not_available = _("{} To add this feature, please run").format(
              _not_available
 diff --git a/bottles/frontend/views/list.py b/bottles/frontend/views/list.py
-index 689d023f..6e437ba5 100644
+index 1b45f21..5f08340 100644
 --- a/bottles/frontend/views/list.py
 +++ b/bottles/frontend/views/list.py
 @@ -19,7 +19,7 @@ from datetime import datetime
@@ -107,7 +107,7 @@ index 689d023f..6e437ba5 100644
              if response != Gtk.ResponseType.ACCEPT:
                  return
 diff --git a/bottles/frontend/views/new_bottle_dialog.py b/bottles/frontend/views/new_bottle_dialog.py
-index 02adeb2f..751882aa 100644
+index 02adeb2..751882a 100644
 --- a/bottles/frontend/views/new_bottle_dialog.py
 +++ b/bottles/frontend/views/new_bottle_dialog.py
 @@ -20,7 +20,7 @@ from gettext import gettext as _
@@ -131,7 +131,7 @@ index 02adeb2f..751882aa 100644
  
          self.app = self.window.get_application()
 diff --git a/bottles/frontend/windows/window.py b/bottles/frontend/windows/window.py
-index 146a99e6..d6016303 100644
+index d73e61d..fa947d4 100644
 --- a/bottles/frontend/windows/window.py
 +++ b/bottles/frontend/windows/window.py
 @@ -21,7 +21,7 @@ import webbrowser
@@ -143,7 +143,7 @@ index 146a99e6..d6016303 100644
  
  from bottles.backend.globals import Paths
  from bottles.backend.health import HealthChecker
-@@ -138,35 +138,6 @@ class BottlesWindow(Adw.ApplicationWindow):
+@@ -147,35 +147,6 @@ class BottlesWindow(Adw.ApplicationWindow):
              manager = Adw.StyleManager.get_default()
              manager.set_color_scheme(Adw.ColorScheme.FORCE_DARK)
  

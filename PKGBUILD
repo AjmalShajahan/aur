@@ -5,7 +5,7 @@
 
 pkgname=bottles-git
 _srcname=Bottles
-pkgver=66.6.r0.ge7bebcb3
+pkgver=67.4.r0.g4a629bef
 pkgrel=1
 epoch=2
 pkgdesc='Easily manage wine and proton prefixes'
@@ -64,8 +64,8 @@ source=(
 	"native-fixes.patch"
 )
 sha256sums=('SKIP'
-            'e0b9ccd2ba012e733ce7517337d4b651cbdf0415a7ef3bae0caf717879b9d0f7'
-            'a5d9948b303e51c045ef8ecab4ed89119e9a6b8353da690d41419acea0eb5311')
+            '98e50e9dbdf2de22f5309efb38b2b831cfc6626c891d2d61e511f4dc721e6a4a'
+            '2380f6f50957e10b1c960610cc2fe41522db01d4eb84feb6870b20095acd02b4')
 
 pkgver() {
 	cd "${srcdir}/${_srcname}"
